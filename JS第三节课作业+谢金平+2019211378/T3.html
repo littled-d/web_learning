@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 500px;">
+<head>
+    <meta charset="UTF-8">
+    <title>留言版</title>
+</head>
+<body>
+    <div>
+        <h1>夜未央@雪落成殇@的空间留言板  /狗头</h1>
+    </div>
+
+    <div style="border-width: 0 0 2px 0; border-style: solid; border-color: rgb(80, 78, 78); padding: 10px;">
+        <textarea id="content" style="width: 88%; height: 160px;" placeholder="请在此输入留言内容..."></textarea>
+        <button id="button">留言</button>
+    </div>
+
+    <ul id="boards">
+        <p id="tip">暂未有留言信息，赶快来占个沙发吧！</p>
+    </ul>
+    <script>
+        const button = document.getElementById("button");
+        button.addEventListener("click",addBoard,false);
+
+        function addBoard() {
+            //获取文本框中的内容
+            const content = document.getElementById("content");
+            if(content.value == ""){
+                alert("请输入留言内容！！！");
+                return;
+            }
+            const boards = document.getElementById("boards"); 
+            const li = document.createElement("li");
+            li.style="border-width:2px; border-style: solid; border-color: rgb(80, 78, 78); padding: 10px; margin-top: 10px;";
+
+            //去点暂未留言的tip
+            document.getElementById("tip") !== null ? boards.removeChild(document.getElementById("tip")) : 0;
+
+            //添加楼层号
+            const floor = document.createTextNode("用户"+(Math.random()*100).toFixed(0));
+            const user = document.createElement("div");
+            user.appendChild(floor);
+            li.appendChild(user);
+            
+            //添加内容
+            const textDiv = document.createElement("div");
+            const text = document.createTextNode(content.value);
+            textDiv.appendChild(text);
+            li.appendChild(textDiv);
+
+            //留言框中内容清空
+            content.value = '';
+
+            //添加删除按钮
+            const delBtuDiv = document.createElement("div");
+            const delBtu = document.createElement("button");
+            delBtuDiv.style.textAlign="right";
+            delBtu.innerHTML = "删除";
+            delBtu.addEventListener('click',()=>boards.removeChild(li), false);
+            delBtuDiv.appendChild(delBtu);
+            li.appendChild(delBtuDiv);
+            
+
+            boards.appendChild(li);
+        }
+    </script>
+
+</body>
+</html>

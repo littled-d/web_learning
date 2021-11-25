@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function changeColor(){
+            let r = (Math.random()*255).toFixed(0), 
+            g = (Math.random()*255).toFixed(0), 
+            b = (Math.random()*255).toFixed(0),
+            f = (Math.random()*100).toFixed(0),
+            rgb = "rgb(" + r + ", " + g + ", " + b + ")";
+            document.getElementById("body").style.backgroundColor = rgb;
+            document.getElementById("word").innerHTML = "背景颜色：" + rgb +"\n 字体o大小：" + f + "px";
+            document.getElementById("word").style.fontSize = f + "px";
+        }
+    </script>
+</head>
+<body id="body" style="background-color: rgb(124, 209, 209); font-size: 20px;">
+    <div >
+        <button  onclick="changeColor()">按钮</button>
+        <p id="word">点这个换颜色</p>
+    </div>
+</body>
+</html>
